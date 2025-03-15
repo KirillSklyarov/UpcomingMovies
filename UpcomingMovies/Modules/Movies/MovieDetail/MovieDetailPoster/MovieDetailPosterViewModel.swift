@@ -9,6 +9,8 @@
 import Foundation
 
 protocol MovieDetailPosterViewModelProtocol {
+
+    var view: MovieDetailPosterViewProtocol? { get set }
     var backdropURL: URL? { get }
     var posterURL: URL? { get }
 

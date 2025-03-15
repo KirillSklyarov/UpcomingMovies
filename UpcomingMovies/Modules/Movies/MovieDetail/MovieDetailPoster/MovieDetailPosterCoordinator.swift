@@ -27,12 +27,9 @@ final class MovieDetailPosterCoordinator: BaseCoordinator, MovieDetailPosterCoor
         let viewController = MovieDetailPosterViewController.instantiate()
         viewController.delegate = delegate
 
-        let viewModel = MovieDetailPosterViewModel(renderContent)
+        var viewModel: MovieDetailPosterViewModelProtocol = DIContainer.shared.resolve(argument: renderContent)
         viewModel.view = viewController
-        viewController.viewModel = viewModel
-
-//        DIContainer.shared.resolve(argument: renderContent)
-//        viewController.viewModel = DIContainer.shared.resolve(argument: renderContent)
+        viewController.initialize(with: viewModel)
 
         return viewController
     }

@@ -15,6 +15,7 @@ protocol MovieDetailPosterViewControllerDelegate: UIViewController {
 protocol MovieDetailPosterViewProtocol: AnyObject {
     func configureUI(backdropURL: URL?, posterURL: URL?)
     func setupTransition()
+    func initialize(with viewModel: MovieDetailPosterViewModelProtocol)
 }
 
 final class MovieDetailPosterViewController: UIViewController, Storyboarded {
@@ -45,5 +46,9 @@ extension MovieDetailPosterViewController: MovieDetailPosterViewProtocol {
     func setupTransition() {
         transitionContainerView.setShadowBorder()
         delegate?.movieDetailPosterViewController(self, transitionContainerView: transitionContainerView)
+    }
+
+    func initialize(with viewModel: MovieDetailPosterViewModelProtocol) {
+        self.viewModel = viewModel
     }
 }
