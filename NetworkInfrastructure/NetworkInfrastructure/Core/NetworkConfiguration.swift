@@ -22,5 +22,4 @@ final class NetworkConfiguration {
         self.apiKey = apiKey
         self.readAccessToken = readAccessToken
     }
-
 }

@@ -8,10 +8,10 @@
 
 enum AppGroup: String, CaseIterable {
 
-    case movies = "group.movies.extension"
+//    case movies = "group.movies.extension"
+    case movies = "group.ru.KSklyarov.UpcomingMovies"
 
     static var allCasesIdentifiers: [String] {
         AppGroup.allCases.map { $0.rawValue }
     }
-
 }

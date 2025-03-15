@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.movies.extension</string>
+		<string>group.ru.KSklyarov.UpcomingMovies</string>
 	</array>
 </dict>
 </plist>
