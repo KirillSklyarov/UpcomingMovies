@@ -41,7 +41,7 @@ extension ConfigurationProvider: Endpoint {
         }
     }
 
-    var parameterEncoding: ParameterEnconding {
+    var parameterEncoding: ParameterEncoding {
         switch self {
         case .getAPIConfiguration:
             return .defaultEncoding

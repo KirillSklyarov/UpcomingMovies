@@ -94,7 +94,7 @@ extension AccountProvider: Endpoint {
         }
     }
 
-    var parameterEncoding: ParameterEnconding {
+    var parameterEncoding: ParameterEncoding {
         switch self {
         case .getAccountDetail, .getFavoriteList, .getWatchlist,
              .getRecommendedList, .getCustomLists, .getCustomListDetail:

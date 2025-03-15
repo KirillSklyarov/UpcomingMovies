@@ -14,7 +14,7 @@ protocol Endpoint {
     var path: String { get }
     var headers: [String: String]? { get }
     var params: [String: Any]? { get }
-    var parameterEncoding: ParameterEnconding { get }
+    var parameterEncoding: ParameterEncoding { get }
     var method: HTTPMethod { get }
 
 }
@@ -90,7 +90,7 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
-enum ParameterEnconding {
+enum ParameterEncoding {
     case defaultEncoding
     case jsonEncoding
     case compositeEncoding

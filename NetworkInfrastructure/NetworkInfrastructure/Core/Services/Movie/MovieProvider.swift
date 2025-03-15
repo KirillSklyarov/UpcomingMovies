@@ -91,7 +91,7 @@ extension MovieProvider: Endpoint {
         }
     }
 
-    var parameterEncoding: ParameterEnconding {
+    var parameterEncoding: ParameterEncoding {
         switch self {
         case .getAccountState, .getByGenreId, .getCredits, .getDetail, .getPopular, .getReviews,
              .getSimilars, .getTopRated, .getUpcoming, .getVideos, .search:

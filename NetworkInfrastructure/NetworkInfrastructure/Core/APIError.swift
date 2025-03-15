@@ -17,21 +17,33 @@ enum APIError: Error, Equatable {
     case requestFailed
     case invalidData
     case unknown(HTTPURLResponse?)
+    case invalidResponse
+    case decodingFailed
+    case forbidden
+    case serverError
+    case serviceUnavailable
 
-    init(response: URLResponse?) {
-        guard let response = response as? HTTPURLResponse else {
-            self = .unknown(nil)
-            return
-        }
-        switch response.statusCode {
-        case 400:
-            self = .badRequest
-        case 401:
-            self = .notAuthenticated
-        case 404:
-            self = .notFound
-        default:
-            self = .unknown(response)
+    case noInternetConnection
+    case timeout
+    case cancelled
+
+    var localizedDescription: String {
+        switch self {
+        case .notAuthenticated: return "User is not authenticated"
+        case .notFound: return "Requested resource not found"
+        case .networkProblem: return "Network problem occurred"
+        case .badRequest: return "Invalid request"
+        case .requestFailed: return "Request failed"
+        case .invalidData: return "Invalid data received"
+        case .unknown: return "Unknown error occurred"
+        case .invalidResponse: return "Invalid response from server"
+        case .decodingFailed: return "Failed to decode data"
+        case .forbidden: return "Access forbidden"
+        case .serverError: return "Server error"
+        case .serviceUnavailable: return "Service temporarily unavailable"
+        case .noInternetConnection: return "No internet connection"
+        case .timeout: return "Request timed out"
+        case .cancelled: return "Request cancelled"
         }
     }
 

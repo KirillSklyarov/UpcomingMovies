@@ -13,7 +13,8 @@ protocol APIClient {
     var session: URLSession { get }
 
     func fetch<T: Decodable>(with request: URLRequest,
-                             decode: @escaping (Decodable) -> T?, completion: @escaping (Result<T, APIError>) -> Void)
+                             decode: @escaping (Decodable) -> T?,
+                             completion: @escaping (Result<T, APIError>) -> Void)
 
 }
 
@@ -24,13 +25,20 @@ extension APIClient {
     private func decodingTask<T: Decodable>(with request: URLRequest,
                                             decodingType: T.Type,
                                             completion: @escaping JSONTaskCompletionHandler) -> URLSessionDataTask {
-        let task = session.dataTask(with: request) { data, response, _ in
+        let task = session.dataTask(with: request) { data, response, error in
+            if let error = error {
+                let apiError = handleURLError(error)
+                completion(.failure(apiError))
+                return
+            }
+
             guard let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(.requestFailed))
+                completion(.failure(.invalidResponse))
                 return
             }
             guard 200..<300 ~= httpResponse.statusCode else {
-                completion(.failure(APIError(response: httpResponse)))
+                let error = handleHTTPError(httpResponse)
+                completion(.failure(error))
                 return
             }
             guard let data = data else {
@@ -42,7 +50,7 @@ extension APIClient {
                 let genericModel = try decoder.decode(decodingType, from: data)
                 completion(.success(genericModel))
             } catch {
-                completion(.failure(.requestFailed))
+                completion(.failure(.decodingFailed))
             }
         }
         return task
@@ -58,7 +66,7 @@ extension APIClient {
                     if let value = decode(json) {
                         completion(.success(value))
                     } else {
-                        completion(.failure(.requestFailed))
+                        completion(.failure(.decodingFailed))
                     }
                 case .failure(let error):
                     completion(.failure(error))
@@ -67,5 +75,34 @@ extension APIClient {
         }
         task.resume()
     }
+}
+
+private extension APIClient {
+
+    func handleURLError(_ error: Error) -> APIError {
+        guard let urlError = error as? URLError else {
+            return .unknown(nil)
+        }
+
+        switch urlError.code {
+        case .notConnectedToInternet, .networkConnectionLost: return .noInternetConnection
+        case .timedOut: return .timeout
+        case .cancelled: return .cancelled
+        default: return .unknown(nil)
+        }
+    }
+
+    func handleHTTPError(_ response: HTTPURLResponse) -> APIError {
+        switch response.statusCode {
+        case 400: return .badRequest
+        case 401: return .notAuthenticated
+        case 403: return .forbidden
+        case 404: return .notFound
+        case 500: return .serverError
+        default: return .serviceUnavailable
+        }
+    }
 
 }
+
+

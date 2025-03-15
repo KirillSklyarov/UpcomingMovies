@@ -38,7 +38,7 @@ extension GenreProvider: Endpoint {
         }
     }
 
-    var parameterEncoding: ParameterEnconding {
+    var parameterEncoding: ParameterEncoding {
         .defaultEncoding
     }
 
