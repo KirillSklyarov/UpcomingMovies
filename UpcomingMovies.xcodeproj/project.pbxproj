@@ -1089,7 +1089,7 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		733CEA042D85C3B1005159DC /* Resourses */ = {
+		733CEA042D85C3B1005159DC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				733CE9FE2D85C3B1005159DC /* Assets.xcassets */,
@@ -1097,7 +1097,16 @@
 				733CEA022D85C3B1005159DC /* Localizable.strings */,
 				733CEA032D85C3B1005159DC /* UpcomingMovies.entitlements */,
 			);
-			path = Resourses;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		733CEA0B2D85C565005159DC /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				E222DC232192AF7A00A2EDF4 /* UIComponents */,
+				E22116B1219156EA0039F8C9 /* Helpers */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		AEA8FC05E782407089541551 /* Frameworks */ = {
@@ -1433,11 +1442,10 @@
 			children = (
 				733CE9F62D85C22E005159DC /* App */,
 				E291266F250DD03F007AD101 /* DI */,
-				E222DC232192AF7A00A2EDF4 /* ViewComponents */,
-				E22116A221914EF00039F8C9 /* Scenes */,
+				E22116A221914EF00039F8C9 /* Modules */,
 				E22116A121914EB30039F8C9 /* Storyboards */,
-				E22116B1219156EA0039F8C9 /* Helpers */,
-				733CEA042D85C3B1005159DC /* Resourses */,
+				733CEA0B2D85C565005159DC /* Core */,
+				733CEA042D85C3B1005159DC /* Resources */,
 			);
 			path = UpcomingMovies;
 			sourceTree = "<group>";
@@ -1480,7 +1488,7 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		E22116A221914EF00039F8C9 /* Scenes */ = {
+		E22116A221914EF00039F8C9 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
 				E225889D224311E700E1327E /* Account */,
@@ -1488,7 +1496,7 @@
 				E21F379F21941D1900D6BFB6 /* Splash */,
 				E22116A321914EF60039F8C9 /* Movies */,
 			);
-			path = Scenes;
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		E22116A321914EF60039F8C9 /* Movies */ = {
@@ -1587,7 +1595,7 @@
 			path = SearchMovies;
 			sourceTree = "<group>";
 		};
-		E222DC232192AF7A00A2EDF4 /* ViewComponents */ = {
+		E222DC232192AF7A00A2EDF4 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
 				E2B47513227EAF920004F621 /* Buttons */,
@@ -1598,7 +1606,7 @@
 				E2601165219386EC00E53095 /* PlaceholderViews */,
 				E26011622193822500E53095 /* Animations */,
 			);
-			path = ViewComponents;
+			path = UIComponents;
 			sourceTree = "<group>";
 		};
 		E224476E223435F100A59FEF /* Layouts */ = {
@@ -3659,11 +3667,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = UpcomingMovies/Resourses/UpcomingMovies.entitlements;
+				CODE_SIGN_ENTITLEMENTS = UpcomingMovies/Resources/UpcomingMovies.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7W278NP9KT;
-				INFOPLIST_FILE = UpcomingMovies/Resourses/Info.plist;
+				INFOPLIST_FILE = UpcomingMovies/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3683,11 +3691,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = UpcomingMovies/Resourses/UpcomingMovies.entitlements;
+				CODE_SIGN_ENTITLEMENTS = UpcomingMovies/Resources/UpcomingMovies.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7W278NP9KT;
-				INFOPLIST_FILE = UpcomingMovies/Resourses/Info.plist;
+				INFOPLIST_FILE = UpcomingMovies/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
