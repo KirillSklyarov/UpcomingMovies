@@ -9,20 +9,27 @@
 import Foundation
 
 protocol MovieDetailPosterViewModelProtocol {
-
     var backdropURL: URL? { get }
     var posterURL: URL? { get }
 
+    func viewLoaded()
 }
 
-struct MovieDetailPosterViewModel: MovieDetailPosterViewModelProtocol {
+final class MovieDetailPosterViewModel: MovieDetailPosterViewModelProtocol {
 
     let backdropURL: URL?
     let posterURL: URL?
 
+    weak var view: MovieDetailPosterViewProtocol?
+
     init(_ renderContent: MovieDetailPosterRenderContent?) {
         self.backdropURL = renderContent?.backdropURL
         self.posterURL = renderContent?.posterURL
+    }
+
+    func viewLoaded() {
+        view?.configureUI(backdropURL: backdropURL, posterURL: posterURL)
+        view?.setupTransition()
     }
 
 }

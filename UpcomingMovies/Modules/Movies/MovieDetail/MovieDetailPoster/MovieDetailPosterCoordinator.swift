@@ -25,8 +25,14 @@ final class MovieDetailPosterCoordinator: BaseCoordinator, MovieDetailPosterCoor
 
     override func build() -> MovieDetailPosterViewController {
         let viewController = MovieDetailPosterViewController.instantiate()
-        viewController.viewModel = DIContainer.shared.resolve(argument: renderContent)
         viewController.delegate = delegate
+
+        let viewModel = MovieDetailPosterViewModel(renderContent)
+        viewModel.view = viewController
+        viewController.viewModel = viewModel
+
+//        DIContainer.shared.resolve(argument: renderContent)
+//        viewController.viewModel = DIContainer.shared.resolve(argument: renderContent)
 
         return viewController
     }

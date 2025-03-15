@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-final class VoteAverageView: UIView {
+final class MovieRatingView: UIView {
 
     private(set) lazy var voteAverageLabel: UILabel = {
         let label = UILabel()
@@ -53,7 +53,6 @@ final class VoteAverageView: UIView {
     }
 
     // MARK: - Lifecycle
-
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()
@@ -69,21 +68,22 @@ final class VoteAverageView: UIView {
         setupShapeLayerPath(backgroundLayer)
         setupShapeLayerPath(loadedLayer)
     }
+}
 
-    // MARK: - Private
-
-    private func setupUI() {
+// MARK: - Private
+private extension MovieRatingView {
+    func setupUI() {
         isAccessibilityElement = true
         setupLabels()
         setupShapeLayers()
     }
 
-    private func setupLabels() {
+    func setupLabels() {
         addSubview(voteAverageLabel)
         voteAverageLabel.centerInSuperview()
     }
 
-    private func setupShapeLayers() {
+    func setupShapeLayers() {
         backgroundLayer.lineWidth = layerLineWidth
         backgroundLayer.fillColor = nil
         backgroundLayer.strokeEnd = 1.0
@@ -99,7 +99,7 @@ final class VoteAverageView: UIView {
         updateVoteValue(voteValue)
     }
 
-    private func setupShapeLayerPath(_ shapeLayer: CAShapeLayer) {
+    func setupShapeLayerPath(_ shapeLayer: CAShapeLayer) {
         shapeLayer.frame = bounds
         let startAngle = degreesToRadians(layerStartAngle)
         let endAngle = degreesToRadians(layerStartAngle) + 2 * CGFloat.pi
@@ -113,12 +113,12 @@ final class VoteAverageView: UIView {
         shapeLayer.path = path
     }
 
-    private func updateShapeLayerColors() {
+    func updateShapeLayerColors() {
         backgroundLayer.strokeColor = backgroundLayerColor.cgColor
         loadedLayer.strokeColor = loadedLayerColor.cgColor
     }
 
-    private func updateVoteValue(_ voteValue: Double?) {
+    func updateVoteValue(_ voteValue: Double?) {
         guard let voteValue = voteValue, voteValue > 0.0 else {
             voteAverageLabel.text = "-"
             loadedLayer.strokeEnd = 0.0
@@ -129,5 +129,4 @@ final class VoteAverageView: UIView {
         voteAverageLabel.text = String(format: "%.1f", voteValue)
         accessibilityLabel = String(format: LocalizedStrings.ratingHint(), voteValue)
     }
-
 }

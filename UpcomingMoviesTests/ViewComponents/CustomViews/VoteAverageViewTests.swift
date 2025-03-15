@@ -13,7 +13,7 @@ final class VoteAverageViewTests: XCTestCase {
 
     func testVoteValueUpdateOnAwakeFromNib() {
         // Arrange
-        let view = VoteAverageView()
+        let view = MovieRatingView()
         view.awakeFromNib()
         // Act
         view.voteValue = 1.0
@@ -23,7 +23,7 @@ final class VoteAverageViewTests: XCTestCase {
 
     func testVoteValueUpdateOnPrepareForInterfaceBuilder() {
         // Arrange
-        let view = VoteAverageView()
+        let view = MovieRatingView()
         view.prepareForInterfaceBuilder()
         // Act
         view.voteValue = 1.0

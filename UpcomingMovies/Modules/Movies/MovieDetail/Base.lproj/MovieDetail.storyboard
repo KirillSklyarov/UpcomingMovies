@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -548,7 +548,7 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uju-Cx-KsU" customClass="VoteAverageView" customModule="UpcomingMovies" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uju-Cx-KsU" customClass="MovieRatingView" customModule="UpcomingMovies" customModuleProvider="target">
                                         <rect key="frame" x="333" y="30.333333333333329" width="44" height="44"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -595,10 +595,10 @@
                     <size key="freeformSize" width="393" height="104.67"/>
                     <connections>
                         <outlet property="genresLabel" destination="WIf-nz-hfn" id="kmJ-2z-lgK"/>
+                        <outlet property="movieRatingView" destination="uju-Cx-KsU" id="vIi-aG-885"/>
                         <outlet property="subtitleLabel" destination="T7r-FB-BUB" id="1fK-5B-8tn"/>
                         <outlet property="titleContentStackView" destination="xaT-CB-UHM" id="kSq-2F-iaY"/>
                         <outlet property="titleLabel" destination="j2H-6z-1N1" id="a8V-Gt-7dU"/>
-                        <outlet property="voteAverageView" destination="uju-Cx-KsU" id="vIi-aG-885"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vtC-Jp-JjT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

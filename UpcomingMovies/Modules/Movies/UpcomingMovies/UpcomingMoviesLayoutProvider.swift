@@ -10,28 +10,21 @@ import UIKit
 
 struct UpcomingMoviesLayoutProvider: UpcomingMoviesLayoutProviderProtocol {
 
+    private let previewCellHeight: CGFloat = 150
+    private let detailCellHeight: CGFloat = 200
+    private let detailCellOffset: CGFloat = 32
+    private let previewLayoutMinColumns: Int = 3
+
     func collectionViewLayout(for presentationMode: UpcomingMoviesPresentationMode, and collectionViewWidth: CGFloat) -> UICollectionViewLayout {
         switch presentationMode {
         case .detail:
-            let detailLayoutWidth = collectionViewWidth - Constants.detailCellOffset
-            return VerticalFlowLayout(preferredWidth: detailLayoutWidth, preferredHeight: Constants.detailCellHeight)
+            let detailLayoutWidth = collectionViewWidth - detailCellOffset
+            return VerticalFlowLayout(preferredWidth: detailLayoutWidth, preferredHeight: detailCellHeight)
         case .preview:
-            let previewLayoutWidth = Constants.previewCellHeight / CGFloat(UIConstants.posterAspectRatio)
+            let previewLayoutWidth = previewCellHeight / CGFloat(UIConstants.posterAspectRatio)
             return VerticalFlowLayout(preferredWidth: previewLayoutWidth,
-                                      preferredHeight: Constants.previewCellHeight,
-                                      minColumns: Constants.previewLayoutMinColumns)
+                                      preferredHeight: previewCellHeight,
+                                      minColumns: previewLayoutMinColumns)
         }
     }
-
-    struct Constants {
-
-        static let previewCellHeight: CGFloat = 150.0
-
-        static let detailCellHeight: CGFloat = 200.0
-        static let detailCellOffset: CGFloat = 32.0
-
-        static let previewLayoutMinColumns: Int = 3
-
-    }
-
 }

@@ -9,10 +9,12 @@
 import UIKit
 
 protocol MovieDetailPosterViewControllerDelegate: UIViewController {
+    func movieDetailPosterViewController(_ movieDetailPosterViewController: MovieDetailPosterViewController, transitionContainerView: UIView)
+}
 
-    func movieDetailPosterViewController(_ movieDetailPosterViewController: MovieDetailPosterViewController,
-                                         transitionContainerView: UIView)
-
+protocol MovieDetailPosterViewProtocol: AnyObject {
+    func configureUI(backdropURL: URL?, posterURL: URL?)
+    func setupTransition()
 }
 
 final class MovieDetailPosterViewController: UIViewController, Storyboarded {
@@ -26,17 +28,22 @@ final class MovieDetailPosterViewController: UIViewController, Storyboarded {
     var viewModel: MovieDetailPosterViewModelProtocol?
     weak var delegate: MovieDetailPosterViewControllerDelegate?
 
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
+        viewModel?.viewLoaded()
+    }
+}
+
+// MARK: - Public methods
+extension MovieDetailPosterViewController: MovieDetailPosterViewProtocol {
+    func configureUI(backdropURL: URL?, posterURL: URL?) {
+        backdropImageView.setImage(with: backdropURL)
+        posterImageView.setImage(with: posterURL)
     }
 
-    private func configureUI() {
-        backdropImageView.setImage(with: viewModel?.backdropURL)
-        posterImageView.setImage(with: viewModel?.posterURL)
-
+    func setupTransition() {
         transitionContainerView.setShadowBorder()
         delegate?.movieDetailPosterViewController(self, transitionContainerView: transitionContainerView)
     }
-
 }

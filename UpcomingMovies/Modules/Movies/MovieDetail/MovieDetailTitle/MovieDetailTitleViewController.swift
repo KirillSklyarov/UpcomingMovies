@@ -14,7 +14,7 @@ final class MovieDetailTitleViewController: UIViewController, Storyboarded {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var genresLabel: UILabel!
-    @IBOutlet private weak var voteAverageView: VoteAverageView!
+    @IBOutlet private weak var movieRatingView: MovieRatingView!
 
     static var storyboardName: String = "MovieDetail"
 
@@ -34,8 +34,11 @@ final class MovieDetailTitleViewController: UIViewController, Storyboarded {
                                 height: UIView.layoutFittingCompressedSize.height)
         preferredContentSize = view.systemLayoutSizeFitting(targetSize)
     }
+}
 
-    private func setupUI() {
+// MARK: - Private methods
+private extension MovieDetailTitleViewController {
+    func setupUI() {
         titleLabel.font = FontHelper.headline
         titleLabel.adjustsFontForContentSizeCategory = true
 
@@ -46,31 +49,31 @@ final class MovieDetailTitleViewController: UIViewController, Storyboarded {
         genresLabel.adjustsFontForContentSizeCategory = true
     }
 
-    private func setupBindables() {
+    func setupBindables() {
         viewModel?.showSubtitle.bindAndFire({ [weak self] subtitle in
             guard let self else { return }
             guard let subtitle else {
-                self.subtitleLabel.isHidden = true
+                subtitleLabel.isHidden = true
                 return
             }
-            self.subtitleLabel.text = subtitle
-            self.subtitleLabel.isHidden = false
+            subtitleLabel.text = subtitle
+            subtitleLabel.isHidden = false
         }, on: .main)
+        
         viewModel?.showGenresNames.bindAndFire({ [weak self] genresNames in
             guard let self else { return }
             guard let genresNames, !genresNames.isEmpty else {
-                self.genresLabel.isHidden = true
+                genresLabel.isHidden = true
                 return
             }
-            self.genresLabel.text = genresNames
-            self.genresLabel.isHidden = false
+            genresLabel.text = genresNames
+            genresLabel.isHidden = false
         }, on: .main)
     }
 
-    private func configureUI() {
+    func configureUI() {
         titleLabel.text = viewModel?.title
         titleLabel.text = viewModel?.title
-        voteAverageView.voteValue = viewModel?.voteAverage
+        movieRatingView.voteValue = viewModel?.voteAverage
     }
-
 }

@@ -20,7 +20,7 @@ final class MovieListCell: UITableViewCell {
     @IBOutlet private weak var releaseDateTitleLabel: UILabel!
     @IBOutlet private weak var releaseDateValueLabel: UILabel!
 
-    @IBOutlet private weak var voteAverageView: VoteAverageView!
+    @IBOutlet private weak var voteAverageView: MovieRatingView!
 
     var viewModel: MovieListCellViewModelProtocol? {
         didSet {
