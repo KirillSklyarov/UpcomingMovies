@@ -16,8 +16,7 @@ extension UIImageView {
         let processor = RoundCornerImageProcessor(cornerRadius: 10)
         kf.setImage(with: url,
                     placeholder: UIImage(named: "vertical-movie-placeholder"),
-                    options: [.processor(processor)]
-        ) 
+                    options: [.processor(processor)])
     }
 
     func cancelImageDownload() {

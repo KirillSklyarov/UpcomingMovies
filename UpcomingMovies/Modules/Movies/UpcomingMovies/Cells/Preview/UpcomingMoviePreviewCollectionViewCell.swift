@@ -46,15 +46,20 @@ final class UpcomingMoviePreviewCollectionViewCell: UICollectionViewCell, Upcomi
     // MARK: - Reactive Behavior
 
     private func setupBindables() {
-        guard let viewModel = viewModel else { return }
+        guard let viewModel else { return }
         accessibilityLabel = viewModel.title
         if let posterURL = viewModel.posterURL {
             posterImageView.setImage(with: posterURL)
             titleLabel.text = nil
         } else {
-            posterImageView.backgroundColor = .darkGray
-            titleLabel.text = viewModel.title
+            designCellWithoutPoster()
         }
+    }
+
+    private func designCellWithoutPoster() {
+        let placeholderImage = UIImage(named: "movie-placeholder-modified")
+        posterImageView.image = placeholderImage
+        titleLabel.text = viewModel?.title
     }
 
 }
