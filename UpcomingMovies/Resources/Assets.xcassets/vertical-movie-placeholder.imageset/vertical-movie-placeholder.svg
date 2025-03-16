@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 400">
+  <!-- Фон -->
+  <rect width="250" height="400" rx="10" fill="#2d2d2d"/>
+  
+  <!-- Кинопленка левая -->
+  <rect x="10" y="0" width="20" height="400" fill="#3d3d3d"/>
+  <circle cx="20" cy="20" r="5" fill="#222222"/>
+  <circle cx="20" cy="60" r="5" fill="#0f3460"/>
+  <circle cx="20" cy="100" r="5" fill="#0f3460"/>
+  <circle cx="20" cy="140" r="5" fill="#0f3460"/>
+  <circle cx="20" cy="180" r="5" fill="#0f3460"/>
+  <circle cx="20" cy="220" r="5" fill="#0f3460"/>
+  <circle cx="20" cy="260" r="5" fill="#0f3460"/>
+  <circle cx="20" cy="300" r="5" fill="#0f3460"/>
+  <circle cx="20" cy="340" r="5" fill="#0f3460"/>
+  <circle cx="20" cy="380" r="5" fill="#0f3460"/>
+  
+  <!-- Кинопленка правая -->
+  <rect x="220" y="0" width="20" height="400" fill="#3d3d3d"/>
+  <circle cx="230" cy="20" r="5" fill="#222222"/>
+  <circle cx="230" cy="60" r="5" fill="#0f3460"/>
+  <circle cx="230" cy="100" r="5" fill="#0f3460"/>
+  <circle cx="230" cy="140" r="5" fill="#0f3460"/>
+  <circle cx="230" cy="180" r="5" fill="#0f3460"/>
+  <circle cx="230" cy="220" r="5" fill="#0f3460"/>
+  <circle cx="230" cy="260" r="5" fill="#0f3460"/>
+  <circle cx="230" cy="300" r="5" fill="#0f3460"/>
+  <circle cx="230" cy="340" r="5" fill="#0f3460"/>
+  <circle cx="230" cy="380" r="5" fill="#0f3460"/>
+  
+  <!-- Основной постер фильма (тень) -->
+  <rect x="55" y="70" width="140" height="200" rx="5" fill="#444444"/>
+  
+  <!-- Хлопушка удалена -->
+  
+  <!-- Текстовое сообщение ниже красного блока на двух строках -->
+  <text x="125" y="150" font-family="Impact, fantasy" font-size="38" fill="#ff3333" text-anchor="middle" font-weight="bold">ПОСТЕР</text>
+  <text x="125" y="200" font-family="Impact, fantasy" font-size="38" fill="#ff3333" text-anchor="middle" font-weight="bold">УЖЕ В ПУТИ</text>
+  
+  <!-- Удалена надпись "загрузка изображения" -->
+  
+  <!-- Звезды оценки -->
+  <polygon points="65,310 69,318 78,319 71,326 73,335 65,330 57,335 59,326 52,319 61,318" fill="#777777"/>
+  <polygon points="95,310 99,318 108,319 101,326 103,335 95,330 87,335 89,326 82,319 91,318" fill="#777777"/>
+  <polygon points="125,310 129,318 138,319 131,326 133,335 125,330 117,335 119,326 112,319 121,318" fill="#777777"/>
+  <polygon points="155,310 159,318 168,319 161,326 163,335 155,330 147,335 149,326 142,319 151,318" fill="#ffffff" fill-opacity="0.3"/>
+  <polygon points="185,310 189,318 198,319 191,326 193,335 185,330 177,335 179,326 172,319 181,318" fill="#ffffff" fill-opacity="0.3"/>
+  
+  <!-- Декоративные элементы кино без кнопки стоп -->
+  <!-- Убрана надпись CINEMA -->
+  <text x="125" y="370" font-family="Arial, sans-serif" font-size="12" fill="#666666" text-anchor="middle">LOADING...</text>
+</svg>

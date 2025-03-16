@@ -13,11 +13,14 @@ extension UIImageView {
 
     func setImage(with url: URL?) {
         kf.indicatorType = .activity
-        kf.setImage(with: url)
+        let processor = RoundCornerImageProcessor(cornerRadius: 10)
+        kf.setImage(with: url,
+                    placeholder: UIImage(named: "vertical-movie-placeholder"),
+                    options: [.processor(processor)]
+        ) 
     }
 
     func cancelImageDownload() {
         kf.cancelDownloadTask()
     }
-
 }

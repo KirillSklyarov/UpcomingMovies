@@ -39,6 +39,7 @@ final class MovieDetailPosterViewController: UIViewController, Storyboarded {
 // MARK: - Public methods
 extension MovieDetailPosterViewController: MovieDetailPosterViewProtocol {
     func configureUI(backdropURL: URL?, posterURL: URL?) {
+        backdropImageView.contentMode = .scaleAspectFill
         backdropImageView.setImage(with: backdropURL)
         posterImageView.setImage(with: posterURL)
     }
