@@ -1,69 +1,44 @@
-# Upcoming Movies App
+# Upcoming Movies
 
-[![License](https://img.shields.io/badge/license-MIT-blue)]()
-[![Platform](https://img.shields.io/badge/platform-iOS-violet)]()
-[![Swift 5](https://img.shields.io/badge/Swift-5-orange.svg?style=flat)](https://developer.apple.com/swift/)
-[![codecov](https://codecov.io/gh/DeluxeAlonso/UpcomingMovies/graph/badge.svg?token=WlD3VVKP1p)](https://codecov.io/gh/DeluxeAlonso/UpcomingMovies)
+Приложение для просмотра информации о предстоящих фильмах с использованием API TMDb. Проект демонстрирует использование Clean Architecture, MVVM и Coordinator Pattern.
 
-Movies app written in Swift 5 using the TMDb API and demonstrating Clean Architecture, Dependency Injection, MVVM and Coordinators.
+## Последние изменения
 
-## Demo
+- Произведена оптимизации структуры приложения
+- Расширен список типов ошибок и их локализованные описания
+- Улучшена обработка сетевых ошибок с информативными алертами
+- Улучшение пользовательского интерфейса и визуальных компонентов
 
-<img src="Demo.gif" width="200" height="433" />
+## Основные функции
 
-## Screenshots
+- Просмотр списка предстоящих фильмов
+- Детальная информация о фильме
+- Просмотр актерского состава и съемочной группы
+- Отзывы и видео к фильмам
+- Поиск фильмов
+- Авторизация через TMDb
+- Профиль пользователя
+- Избранное и список ожидания
+- Пользовательские коллекции фильмов
+- Виджеты для быстрого доступа к фильмам
 
-<img src="Screenshots/Home.png" width=200 height=433> <img src="Screenshots/Detail.png" width=200 height=433>
-<img src="Screenshots/Search.png" width=200 height=433> <img src="Screenshots/SearchResult.png" width=200 height=433>
-<img src="Screenshots/Reviews.png" width=200 height=433> <img src="Screenshots/Videos.png" width=200 height=433>
-<img src="Screenshots/Credits.png" width=200 height=433> <img src="Screenshots/Favorites.png" width=200 height=433>
-<img src="Screenshots/SignIn.png" width=200 height=433> <img src="Screenshots/Profile.png" width=200 height=433>
-<img src="Screenshots/CustomLists.png" width=200 height=433> <img src="Screenshots/CustomListDetail.png" width=200 height=433>
-<img src="Screenshots/TodayExtension.png" width=200 height=433> <img src="Screenshots/Widgets/Small/Upcoming.png" width=200 height=433> 
-<img src="Screenshots/Widgets/Small/Search.png" width=200 height=433>
+## Используемые технологии
 
-## How to run
+- Swift 5
+- UIKit
+- MVVM, Coordinator Pattern
+- Dependency Injection через Swinject
+- Kingfisher для загрузки и кэширования изображений
+- SwiftLint для поддержки стиля кода
 
-### Requirements
+## Требования
 
-1. Xcode 14.0+
-2. Cocoapods 1.9.0+
-3. Fastlane 2.1.0+ (only needed if you want to run the unit tests and swift lint scans via the CLI).
+- iOS 13.0+
+- Xcode 14.0+
+- CocoaPods 1.9.0+
 
-### Getting started
+## Установка
 
-1. Clone this repository.
-2. Via the CLI, go to the root folder of the project where Podfile is located and run `pod install`.
-3. Open the workspace file and you are ready to go.
-
-*Note: you can run the tests either using `CMD+U` on Xcode or running `fastlane tests` via the CLI.* 
-
-## First-party libraries
-
-### DLProgressHUD (https://github.com/DeluxeAlonso/DLProgressHUD)
-Lightweight Progress HUD implementation for iOS.
-
-## Third-party libraries
-
-### Kingfisher (https://github.com/onevcat/Kingfisher)
-Used for downloading and caching images. In the app, it is used to show the poster and backdrop image of the movie.
-
-### CollectionViewSlantedLayout (https://github.com/yacir/CollectionViewSlantedLayout)
-Custom UICollectionViewLayout to display slanted content. In the app, it is used to present the list of favorite movies.
-
-### KeychainSwift (https://github.com/evgenyneu/keychain-swift)
-Helper functions for saving text in Keychain securely for iOS, OS X, tvOS and watchOS. In the app, it is used to save the Session Id and Account Id of the signed in user.
-
-### SwiftLint (https://github.com/realm/SwiftLint)
-A tool to enforce Swift style and conventions.
-
-### Swinject (https://github.com/Swinject/Swinject)
-Dependency injection framework for Swift.
-
-## Contributing
-
-Feel free to open an issue or submit a pull request if you have any improvement or feedback.
-
-## Author
-
-Alonso Alvarez, alonso.alvarez.dev@gmail.com
+1. Клонировать репозиторий
+2. Выполнить `pod install` в корневой директории проекта
+3. Открыть файл `.xcworkspace` и запустить проект
