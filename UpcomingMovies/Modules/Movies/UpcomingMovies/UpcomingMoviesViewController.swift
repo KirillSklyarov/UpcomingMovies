@@ -138,8 +138,7 @@ final class UpcomingMoviesViewController: UIViewController, Storyboarded, Loadin
         case .empty:
             presentEmptyView(with: LocalizedStrings.emptyMovieResults())
         case .error(let error):
-//            showNetworkErrorAlert(newError)
-
+            showNetworkErrorAlert(error)
             showErrorPlaceholderRetryView(error)
         }
     }
