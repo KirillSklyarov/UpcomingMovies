@@ -37,7 +37,7 @@ extension APIClient {
                 return
             }
             guard 200..<300 ~= httpResponse.statusCode else {
-                let error = handleHTTPError(httpResponse)
+                let error = handleHTTPError(httpResponse, data: data)
                 completion(.failure(error))
                 return
             }
@@ -50,7 +50,7 @@ extension APIClient {
                 let genericModel = try decoder.decode(decodingType, from: data)
                 completion(.success(genericModel))
             } catch {
-                completion(.failure(.decodingFailed))
+                completion(.failure(.decodingFailed(error.localizedDescription)))
             }
         }
         return task
@@ -66,7 +66,8 @@ extension APIClient {
                     if let value = decode(json) {
                         completion(.success(value))
                     } else {
-                        completion(.failure(.decodingFailed))
+                        let debugInfo = "Не удалось преобразовать JSON: \(json) в \(T.self)"
+                        completion(.failure(.decodingFailed(debugInfo)))
                     }
                 case .failure(let error):
                     completion(.failure(error))
@@ -85,24 +86,43 @@ private extension APIClient {
         }
 
         switch urlError.code {
-        case .notConnectedToInternet, .networkConnectionLost: return .noInternetConnection
+        case .badURL, .notConnectedToInternet, .networkConnectionLost: return .noInternetConnection
         case .timedOut: return .timeout
         case .cancelled: return .cancelled
         default: return .unknown(nil)
         }
     }
 
-    func handleHTTPError(_ response: HTTPURLResponse) -> APIError {
+    func handleHTTPError(_ response: HTTPURLResponse, data: Data?) -> APIError {
         switch response.statusCode {
-        case 400: return .badRequest
-        case 401: return .notAuthenticated
+        case 400: return .badRequest(try? decodeErrorResponse(from: data))
+        case 401: return .notAuthenticated(try? decodeErrorResponse(from: data))
         case 403: return .forbidden
         case 404: return .notFound
-        case 500: return .serverError
-        default: return .serviceUnavailable
+        case 500: return .serverError(response.statusCode, try? decodeErrorResponse(from: data))
+        default: return .serviceUnavailable(response.statusCode)
         }
+    }
+
+
+    // Делаем более детальную информацию из полученного ответа
+    private func decodeErrorResponse(from data: Data?) throws -> ErrorResponse {
+        guard let data else { return ErrorResponse(code: 0, message: "", success: false) }
+        return try JSONDecoder().decode(ErrorResponse.self, from: data)
     }
 
 }
 
+// MARK: - Error Response
+public struct ErrorResponse: Codable, Equatable {
+    let code: Int
+    let message: String
+    let success: Bool
+
+    enum CodingKeys: String, CodingKey {
+        case code = "status_code"
+        case message = "status_message"
+        case success = "success"
+    }
+}
 

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import NetworkInfrastructure
 
 final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleViewStateProcessable {
 

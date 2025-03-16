@@ -8,28 +8,28 @@
 
 import Foundation
 
-enum APIError: Error, Equatable {
+public enum APIError: Error, Equatable, LocalizedError {
 
-    case notAuthenticated
+    case notAuthenticated(ErrorResponse?)
     case notFound
     case networkProblem
-    case badRequest
+    case badRequest(ErrorResponse?)
     case requestFailed
     case invalidData
     case unknown(HTTPURLResponse?)
     case invalidResponse
-    case decodingFailed
+    case decodingFailed(String)
     case forbidden
-    case serverError
-    case serviceUnavailable
+    case serverError(Int, ErrorResponse?)
+    case serviceUnavailable(Int)
 
     case noInternetConnection
     case timeout
     case cancelled
 
-    var localizedDescription: String {
+    public var description: String {
         switch self {
-        case .notAuthenticated: return "User is not authenticated"
+        case .notAuthenticated(let response): return "Unauthorized access: \(response?.message ?? "Unknown error")"
         case .notFound: return "Requested resource not found"
         case .networkProblem: return "Network problem occurred"
         case .badRequest: return "Invalid request"
@@ -37,7 +37,7 @@ enum APIError: Error, Equatable {
         case .invalidData: return "Invalid data received"
         case .unknown: return "Unknown error occurred"
         case .invalidResponse: return "Invalid response from server"
-        case .decodingFailed: return "Failed to decode data"
+        case .decodingFailed(let message): return "Failed to decode data: \(message)"
         case .forbidden: return "Access forbidden"
         case .serverError: return "Server error"
         case .serviceUnavailable: return "Service temporarily unavailable"

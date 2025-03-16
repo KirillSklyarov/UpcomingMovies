@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NetworkInfrastructure
 
 final class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDisplayable, PlaceholderDisplayable, TransitionableInitiator {
 
@@ -137,10 +138,9 @@ final class UpcomingMoviesViewController: UIViewController, Storyboarded, Loadin
         case .empty:
             presentEmptyView(with: LocalizedStrings.emptyMovieResults())
         case .error(let error):
-            presentRetryView(with: error.localizedDescription,
-                             retryHandler: { [weak self] in
-                                self?.viewModel?.refreshMovies()
-                             })
+//            showNetworkErrorAlert(newError)
+
+            showErrorPlaceholderRetryView(error)
         }
     }
 
@@ -214,6 +214,29 @@ extension UpcomingMoviesViewController: UICollectionViewDelegate {
             displayedCellsIndexPaths.insert(indexPath)
             CollectionViewCellAnimator.fadeAnimate(cell: cell)
         }
+    }
+
+}
+
+// MARK: - Supporting methods
+private extension UpcomingMoviesViewController {
+    func showNetworkErrorAlert(_ error: Error) {
+        guard let error = error as? APIError else { print("Unexpected error \(error)"); return }
+        print(error.description)
+
+        let alert = AppAlert.create(error) { [weak self] in
+            self?.viewModel?.refreshMovies()
+        }
+        present(alert, animated: true)
+    }
+
+    func showErrorPlaceholderRetryView(_ error: Error) {
+        guard let error = error as? APIError else { print("Unexpected error \(error)"); return }
+
+        presentRetryView(with: error.description,
+                         retryHandler: { [weak self] in
+            self?.viewModel?.refreshMovies()
+        })
     }
 
 }
